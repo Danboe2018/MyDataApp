@@ -61,8 +61,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
         c.moveToFirst();
 
         while (!c.isAfterLast()){
-            if(c.getString(c.getColumnIndex("productName")) != null){
-                dbString += c.getString(c.getColumnIndex("productName"));
+            if(c.getString(c.getColumnIndex(COLUMN_PRODUCTNAME)) != null){
+                dbString += c.getString(c.getColumnIndex(COLUMN_PRODUCTNAME));
                 dbString += "\n";
             }
             c.moveToNext();
