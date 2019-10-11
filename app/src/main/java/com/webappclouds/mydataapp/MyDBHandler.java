@@ -1,5 +1,6 @@
 package com.webappclouds.mydataapp;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -27,6 +28,22 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS" + TABLE_PRODUCTS);
+        onCreate(db);
+    }
 
+    public void addProduct(Products products){
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_PRODUCTNAME, products.get_productName());
+        SQLiteDatabase db = getWritableDatabase();
+        db.insert(TABLE_PRODUCTS,null,values);
+
+        db.close();
+    }
+
+    public void deleteProduct(String productName){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_PRODUCTS + " WHERE " + COLUMN_PRODUCTNAME + " =\"" + productName + "\";");
     }
 }
