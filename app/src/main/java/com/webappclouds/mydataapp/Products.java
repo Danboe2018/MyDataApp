@@ -5,6 +5,10 @@ public class Products {
     private int _id;
     private String _productName;
 
+    public Products(){
+
+    }
+
     public Products(String productName){
         this._productName = productName;
     }
